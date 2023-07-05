@@ -25,14 +25,14 @@ use App\Http\Controllers\Admin\CategoryController;
     Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
     Route::get('/list', [PagesController::class, 'list'])->name('list');
 
-Route::prefix('admin/')->name('admin.')->group(function(){
+Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
   
     Route::get('dashboard', function(){
         return view('admin.layouts.dashboard');
     })->name('dashboard');
-    Route::resources([
-
-    'categories' => CategoryController::class,
+    Route::resources(['categories' => CategoryController::class,]);
     
-    ]);
 });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
