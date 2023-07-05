@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoryController;
-
+use App\Http\Controllers\Admin\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,8 +30,13 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
     Route::get('dashboard', function(){
         return view('admin.layouts.dashboard');
     })->name('dashboard');
-    Route::resources(['categories' => CategoryController::class,]);
-    
+
+    Route::resources([
+    'categories' => CategoryController::class,
+    'posts'=> PostController::class,
+    ]);
+
+
 });
 Auth::routes();
 
