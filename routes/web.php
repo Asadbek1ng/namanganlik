@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 /*
@@ -18,7 +19,20 @@ use App\Http\Controllers\PagesController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
-Route::get('/article', [PagesController::class, 'article'])->name('article');
-Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
-Route::get('/list', [PagesController::class, 'list'])->name('list');
+
+    Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
+    Route::get('/article', [PagesController::class, 'article'])->name('article');
+    Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+    Route::get('/list', [PagesController::class, 'list'])->name('list');
+
+Route::prefix('admin/')->name('admin.')->group(function(){
+  
+    Route::get('dashboard', function(){
+        return view('admin.layouts.dashboard');
+    })->name('dashboard');
+    Route::resources([
+
+    'categories' => CategoryController::class,
+    
+    ]);
+});
