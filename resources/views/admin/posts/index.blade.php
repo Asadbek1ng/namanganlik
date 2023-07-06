@@ -38,7 +38,10 @@
                                 <td>{{ $item->title_ru }}</td>
                                 <td>{{ $item->body_uz }}</td>
                                 <td>{{ $item->body_ru }}</td>
-                                <td>{{ $item->image }}</td>
+                                {{-- <td>{{ $item->image }}</td> --}}
+                                <td>
+                                    <img alt="image" src="/images/{{ $item->img }}" width="59">
+                                  </td>
                                 <td>
                                     <form action="admin/categories/destroy" method="POST">
                                         <a class="btn btn-primary" href="{{ route('admin.categories.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>

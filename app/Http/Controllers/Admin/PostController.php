@@ -33,6 +33,16 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $requestData = $request->all();
+
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $imageName = time().'-'.$file->getClientOriginalName();
+            $file->move('images/', $imageName);
+
+            $requestData['image'] = $imageName;
+        }
         Post::create($request->all());
         return redirect()->route('admin.posts.index')->with('success', 'Successfully added !');
    

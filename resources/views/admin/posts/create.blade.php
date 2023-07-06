@@ -37,9 +37,12 @@
                         </div>
 
                         <div class="mb-3">
-                            <label><h4>Add image</h4></label>
-                            <input name="img" type="file" class="form-control" required name="image">
-                          </div>                      
+                            <label for="image-upload" id="image-label"><h4>Add image</h4></label>
+                            <input id="image-upload" name="image" type="file" class="form-control" required name="image">
+                          </div>   
+                        </div>
+                        @error('img') <div class="alert alert-danger">{{ $message }}</div> @enderror
+                      </div>                   
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
                 </div>
