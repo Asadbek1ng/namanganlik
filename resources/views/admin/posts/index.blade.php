@@ -44,8 +44,8 @@
                                   </td>
                                 <td>
                                     <form action="admin/categories/destroy" method="POST">
-                                        <a class="btn btn-primary" href="{{ route('admin.categories.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>
-                                        <a class="btn btn-primary" href="{{ route('admin.categories.edit', $item->id) }}"><ion-icon name="create-outline"></ion-icon></a>
+                                        <a class="btn btn-primary" href="{{ route('admin.posts.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>
+                                        <a class="btn btn-primary" href="{{ route('admin.posts.edit', $item->id) }}"><ion-icon name="create-outline"></ion-icon></a>
     
                                         @csrf
                                         @method('DELETE')
