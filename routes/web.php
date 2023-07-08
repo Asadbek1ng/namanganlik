@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PostController;
 
 
@@ -23,9 +24,8 @@ use App\Http\Controllers\Admin\PostController;
 // });
 
     Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
-    Route::get('/article', [PagesController::class, 'article'])->name('article');
-    Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
-    Route::get('/list', [PagesController::class, 'list'])->name('list');
+   Route::auto('/', PagesController::class);
+
 
 Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
   
@@ -38,6 +38,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
     'posts'=> PostController::class,
     ]);
 
+    Route::resource('messages', MessageController::class)->only('index', 'show', 'destroy');
 
 });
 

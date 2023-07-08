@@ -41,7 +41,7 @@
                             <input id="image-upload" name="image" type="file" class="form-control" required name="image">
                           </div>   
                         </div>
-                        @error('img') <div class="alert alert-danger">{{ $message }}</div> @enderror
+                        @error('image') <div class="alert alert-danger">{{ $message }}</div> @enderror
                       </div>                   
                         <button type="submit" class="btn btn-primary">Add</button>
                     </form>
