@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -24,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('tags'));
         
     }
 
@@ -43,7 +45,9 @@ class PostController extends Controller
 
             $requestData['image'] = $imageName;
         }
-        Post::create($request->all());
+        // return $request;
+       $post = Post::create($request->except('tag_id'));
+       $post->tags()->attach($request->tag_id);
         return redirect()->route('admin.posts.index')->with('success', 'Successfully added !');
    
     }

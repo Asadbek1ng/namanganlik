@@ -37,8 +37,17 @@
                         </div>
 
                         <div class="mb-3">
+                            <label class="form-label">Tag</label>
+                            <select class="form-control" name="tag_id[]"  id="tag_id" multiple>
+                                @foreach ($tags as $item )
+                                    <option  value="{{ $item->id }}">{{ $item->tag_uz }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="image-upload" id="image-label"><h4>Add image</h4></label>
-                            <input id="image-upload" name="image" type="file" class="form-control" required name="image">
+                            <input id="image-upload" name="image" type="file" class="form-control"  name="image">
                           </div>   
                         </div>
                         @error('image') <div class="alert alert-danger">{{ $message }}</div> @enderror

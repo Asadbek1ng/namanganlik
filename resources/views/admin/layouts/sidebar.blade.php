@@ -26,6 +26,7 @@
             </div>
             <a href="{{ route('admin.categories.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Categories</a>
             <a href="{{ route('admin.posts.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Posts</a>
+            <a href="{{ route('admin.tags.index') }}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Tags</a>
             <a href="{{ route('admin.messages.index') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Messages</a>
             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
             <div class="nav-item dropdown">

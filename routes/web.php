@@ -5,8 +5,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\PostController;
-
-
+use App\Http\Controllers\Admin\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +35,7 @@ Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
     Route::resources([
     'categories' => CategoryController::class,
     'posts'=> PostController::class,
+    'tags'=>TagController::class,
     ]);
 
     Route::resource('messages', MessageController::class)->only('index', 'show', 'destroy');
