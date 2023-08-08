@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\CategoryController; 
 use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\TagController;
+use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\AuditController;
+use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\TegController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,30 +22,55 @@ use App\Http\Controllers\Admin\TagController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
 
-    Route::get('/', [PagesController::class, 'welcome'])->name('welcome');
-   Route::auto('/', PagesController::class);
+Route::auto('/pages', PagesController::class);
 
+Route::get('lang/{lang}', function($lang){
+    session(['lang' => $lang]);
 
-Route::prefix('admin/')->name('admin.')->middleware('auth')->group(function(){
-  
-    Route::get('dashboard', function(){
-        return view('admin.layouts.dashboard');
-    })->name('dashboard');
-
-    Route::resources([
-    'categories' => CategoryController::class,
-    'posts'=> PostController::class,
-    'tags'=>TagController::class,
-    ]);
-
-    Route::resource('messages', MessageController::class)->only('index', 'show', 'destroy');
-
+    return back();
 });
 
-Auth::routes();
+// ADMIN
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::prefix('admin/')->middleware('auth')->name('admin.')->group(function(){
+    Route::get('dashboard', function(){
+        return view('admin.layouts.dashboard');
+    })->middleware('auth')->name('dashboard');
+
+    Route::group(['middleware' => ['role:SuperAdmin']], function () {
+        Route::resource('audits', AuditController::class)->only('index', 'show', 'destroy');
+        Route::resource('logins', LoginController::class)->only('index');
+        Route::resources([
+            'users' => UserController::class,
+            'roles' => RoleController::class,
+        ]);
+    });
+
+    Route::group(['middleware' => ['role:SuperAdmin|admin']], function () {
+        Route::resource('messages', MessageController::class)->only('index', 'show', 'destroy');
+        Route::resources([
+            'tegs' => TegController::class,
+        ]);
+    });
+
+    Route::group(['middleware' => ['role:SuperAdmin|writter']], function () {
+        Route::resources([
+            'categories' => CategoryController::class,
+            'posts' => PostController::class,
+        ]);
+    });
+
+    
+    
+    
+    
+});
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+require __DIR__.'/auth.php';

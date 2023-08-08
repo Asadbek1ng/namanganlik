@@ -7,28 +7,25 @@
                 <div class="row g-4">
                     <div class="col-12">
                         <div class="bg-light rounded h-100 p-4">
-                            <h6 class="mb-4">Message</h6>
+                            <h6 class="mb-4">Xabarlar</h6>
                             <div class="table-responsive">
                                 <table class="table">
-                                        <tr>
-                                            <th scope="row">Full name</th>
-                                            <td>{{ $message->full_name }}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">Phone</th>
-                                            <td>{{ $message->phone }}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">Message</th>
-                                            <td>{{ $message->message }}</td>
-                                        </tr>
-
-                                        <tr>
-                                            <th scope="row">Date</th>
-                                            <td>{{ $message->created_at }}</td>
-                                        </tr>
+                                    <tr>
+                                        <th scope="row">Full name</th>
+                                        <td>{{ $message->full_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Phone</th>
+                                        <td>{{ $message->phone }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Message</th>
+                                        <td>{{ $message->message }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date</th>
+                                        <td>{{ $message->created_at }}</td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>

@@ -9,10 +9,13 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $guarded = ['teg_id'];
 
-    public function tags(){
-        return $this->belongsToMany(Tag::class);
+    public function category(){
+        return $this->belongsTo(Category::class);
     }
 
+    public function tegs(){
+        return $this->belongsToMany(Teg::class); 
+    }
 }
