@@ -43,7 +43,7 @@
                                     <img alt="image" src="/images/{{ $item->img }}" width="59">
                                   </td>
                                 <td>
-                                    <form action="admin/categories/destroy" method="POST">
+                                    <form action="admin/posts/destroy" method="POST">
                                         <a class="btn btn-primary" href="{{ route('admin.posts.show', $item->id) }}"><ion-icon name="eye-outline"></ion-icon></a>
                                         <a class="btn btn-primary" href="{{ route('admin.posts.edit', $item->id) }}"><ion-icon name="create-outline"></ion-icon></a>
     
